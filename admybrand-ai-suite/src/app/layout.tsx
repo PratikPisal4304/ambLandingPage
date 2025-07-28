@@ -2,7 +2,9 @@
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
-import { cn } from '@/lib/utils' // We will create this file next
+import { cn } from '@/lib/utils'
+import { Header } from '@/components/layout/Header' // Import Header
+import { Footer } from '@/components/layout/Footer' // Import Footer
 
 const inter = Inter({
   subsets: ['latin'],
@@ -26,13 +28,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="!scroll-smooth">
       <body className={cn(
         'min-h-screen bg-background-dark font-sans text-text-primary antialiased',
         inter.variable,
         poppins.variable
       )}>
-        {children}
+        <Header />
+        <div className="pt-20"> {/* Add padding to offset the fixed header */}
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   )

@@ -1,4 +1,3 @@
-// src/app/page.tsx
 "use client";
 
 import Image from "next/image";
@@ -14,6 +13,12 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/Accordion";
+import {
   ArrowRight,
   Check,
   BrainCircuit,
@@ -22,10 +27,10 @@ import {
   Component,
   TestTube2,
   Target,
-  Star, // New Icon
+  Star,
 } from "lucide-react";
 
-// Feature data
+// Data for Features Section
 const features = [
   {
     icon: <BrainCircuit size={28} className="text-secondary" />,
@@ -59,7 +64,7 @@ const features = [
   },
 ];
 
-// Testimonial data
+// Data for Testimonials Section
 const testimonials = [
   {
     name: "Sarah Johnson",
@@ -103,6 +108,18 @@ const testimonials = [
     rating: 5,
     quote: "I was impressed by the advanced audience targeting. The AI identified new, high-value segments we had completely overlooked, opening up a major revenue stream.",
   },
+];
+
+// Data for FAQ Section
+const faqItems = [
+    { question: "How does the AI optimization work?", answer: "Our AI analyzes thousands of data points from your campaigns in real-time, including ad creatives, audience demographics, and platform performance. It then automatically adjusts bids, budgets, and targeting parameters to maximize your ROI without manual intervention." },
+    { question: "What integrations are available?", answer: "ADmyBRAND AI Suite integrates seamlessly with major platforms like Google Ads, Facebook Ads, Instagram, LinkedIn, HubSpot, Salesforce, and Shopify. We are constantly adding new integrations based on customer feedback." },
+    { question: "Is there a free trial?", answer: "Yes! We offer a 14-day free trial on our Professional plan. You get full access to all advanced features, no credit card required. You can experience the full power of our platform and see results for yourself." },
+    { question: "How quickly will I see results?", answer: "While results can vary, most of our customers start seeing significant improvements in their campaign performance and ROI within the first 7-10 days of using the platform's optimization tools." },
+    { question: "Can I cancel anytime?", answer: "Absolutely. All our monthly plans are commitment-free, and you can cancel at any time directly from your account dashboard. If you're on an annual plan, you can cancel at the end of your term." },
+    { question: "Do you offer training and support?", answer: "Yes, we provide comprehensive onboarding, detailed documentation, and video tutorials. Our Professional and Enterprise plans also include priority email and chat support to help you with any questions you may have." },
+    { question: "Is my data secure?", answer: "Data security is our top priority. We use industry-standard encryption for data in transit and at rest, and we are fully compliant with GDPR, CCPA, and other major data protection regulations. Your data is yours alone." },
+    { question: "What makes ADmyBRAND different?", answer: "Unlike other tools that focus on a single channel, ADmyBRAND provides a holistic, AI-powered view across all your marketing efforts. Our predictive analytics and cross-channel automation give you an unparalleled strategic advantage." },
 ];
 
 export default function HomePage() {
@@ -150,7 +167,7 @@ export default function HomePage() {
       </motion.div>
 
       {/* ========== Features Section ========== */}
-      <section className="w-full max-w-6xl">
+      <section id="features" className="w-full max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="font-heading text-h2-m md:text-h2-d text-text-primary">Unlock Your Marketing Potential</h2>
           <p className="text-text-secondary mt-2">Everything you need to automate, optimize, and grow.</p>
@@ -182,7 +199,7 @@ export default function HomePage() {
       </section>
 
       {/* ========== Testimonials Section ========== */}
-      <section className="w-full max-w-6xl">
+      <section id="testimonials" className="w-full max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="font-heading text-h2-m md:text-h2-d text-text-primary">Loved by Marketers Worldwide</h2>
           <p className="text-text-secondary mt-2">Don't just take our word for it. Here's what our customers say.</p>
@@ -230,13 +247,13 @@ export default function HomePage() {
       </section>
 
       {/* ========== Pricing Section ========== */}
-      <section className="w-full max-w-6xl">
+      <section id="pricing" className="w-full max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="font-heading text-h2-m md:text-h2-d text-text-primary">Flexible Pricing for Teams of All Sizes</h2>
           <p className="text-text-secondary mt-2">Choose the plan that's right for you.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Pricing Cards */}
+          {/* Starter Plan */}
           <Card className="flex flex-col">
             <CardHeader>
               <CardTitle>Starter</CardTitle>
@@ -247,12 +264,16 @@ export default function HomePage() {
               <ul className="space-y-3 text-text-secondary">
                 <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> 1 User</li>
                 <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> 10 Campaigns</li>
+                <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> Basic AI Tools</li>
+                <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> Email Support</li>
               </ul>
             </CardContent>
             <CardFooter>
               <Button variant="outline" className="w-full">Choose Starter</Button>
             </CardFooter>
           </Card>
+
+          {/* Professional Plan (Featured) */}
           <Card className="flex flex-col border-secondary shadow-secondary/20 relative">
             <Badge variant="secondary" className="absolute -top-4 self-center">Most Popular</Badge>
             <CardHeader>
@@ -264,6 +285,8 @@ export default function HomePage() {
               <ul className="space-y-3 text-text-secondary">
                 <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> 5 Users</li>
                 <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> Unlimited Campaigns</li>
+                <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> Smart Campaign Optimization</li>
+                <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> Predictive Analytics</li>
                 <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> Priority Support</li>
               </ul>
             </CardContent>
@@ -271,6 +294,8 @@ export default function HomePage() {
               <Button variant="primary" className="w-full">Start Free Trial</Button>
             </CardFooter>
           </Card>
+
+          {/* Enterprise Plan */}
           <Card className="flex flex-col">
             <CardHeader>
               <CardTitle>Enterprise</CardTitle>
@@ -279,8 +304,10 @@ export default function HomePage() {
             </CardHeader>
             <CardContent className="flex-grow">
               <ul className="space-y-3 text-text-secondary">
+                <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> White-Labeling</li>
                 <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> Dedicated Account Manager</li>
                 <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> Custom Integrations</li>
+                <li className="flex items-center"><Check className="mr-2 h-4 w-4 text-success" /> 24/7 Premium Support</li>
               </ul>
             </CardContent>
             <CardFooter>
@@ -289,6 +316,25 @@ export default function HomePage() {
           </Card>
         </div>
       </section>
+
+      {/* ========== FAQ Section ========== */}
+      <section id="faq" className="w-full max-w-4xl">
+         <div className="text-center mb-12">
+            <h2 className="font-heading text-h2-m md:text-h2-d text-text-primary">Frequently Asked Questions</h2>
+            <p className="text-text-secondary mt-2">Can't find the answer you're looking for? Reach out to our team.</p>
+         </div>
+         <Accordion type="single" collapsible className="w-full">
+            {faqItems.map((item, i) => (
+                <AccordionItem value={`item-${i}`} key={i}>
+                    <AccordionTrigger className="text-lg text-left">{item.question}</AccordionTrigger>
+                    <AccordionContent className="text-text-secondary text-base">
+                        {item.answer}
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
+         </Accordion>
+      </section>
+
     </main>
   );
 }
