@@ -1,7 +1,7 @@
 // src/app/page.tsx
-"use client"; // Required for Framer Motion animations
+"use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import {
@@ -12,18 +12,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { ArrowRight, Check, Star } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 export default function HomePage() {
-  // Animation variants for Framer Motion
-  const FADE_UP_ANIMATION_VARIANTS = {
+  const FADE_UP_ANIMATION_VARIANTS: Variants = {
     hidden: { opacity: 0, y: 10 },
     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } },
   };
 
   return (
-    <main className="flex min-h-screen w-full flex-col items-center justify-center bg-background-dark p-4 md:p-12">
-
+    <main className="flex min-h-screen w-full flex-col items-center justify-start bg-background-dark p-4 md:p-12">
       {/* ========== Hero Section ========== */}
       <motion.div
         initial="hidden"
@@ -37,27 +35,27 @@ export default function HomePage() {
             },
           },
         }}
-        className="w-full max-w-4xl text-center flex flex-col items-center space-y-8 my-24"
+        className="w-full max-w-4xl text-center flex flex-col items-center space-y-8 my-16 md:my-24"
       >
         <motion.div variants={FADE_UP_ANIMATION_VARIANTS}>
           <Badge variant="secondary">Trusted by 10,000+ marketers worldwide</Badge>
         </motion.div>
 
-        <motion.h1 
+        <motion.h1
           variants={FADE_UP_ANIMATION_VARIANTS}
           className="font-heading text-h1-m md:text-h1-d font-bold tracking-tight bg-gradient-to-br from-text-primary to-text-secondary bg-clip-text text-transparent"
         >
           Transform Your Marketing with AI-Powered Automation
         </motion.h1>
 
-        <motion.p 
+        <motion.p
           variants={FADE_UP_ANIMATION_VARIANTS}
           className="text-lg md:text-xl text-text-secondary max-w-2xl"
         >
           ADmyBRAND AI Suite helps businesses increase conversions by 300% with intelligent campaign optimization, automated content creation, and predictive analytics.
         </motion.p>
 
-        <motion.div 
+        <motion.div
           variants={FADE_UP_ANIMATION_VARIANTS}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
@@ -72,7 +70,7 @@ export default function HomePage() {
           <h2 className="font-heading text-h2-m md:text-h2-d text-text-primary">Flexible Pricing for Teams of All Sizes</h2>
           <p className="text-text-secondary mt-2">Choose the plan that's right for you.</p>
         </div>
-
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Starter Plan */}
           <Card className="flex flex-col">
