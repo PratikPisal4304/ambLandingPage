@@ -30,23 +30,6 @@ const buttonVariants = cva(
   }
 )
 
-const iconVariants = cva(
-  "",
-  {
-    variants: {
-      size: {
-        sm: "h-4 w-4",
-        md: "h-5 w-5",
-        lg: "h-6 w-6",
-        xl: "h-7 w-7",
-      },
-    },
-    defaultVariants: {
-      size: "md",
-    },
-  }
-)
-
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
@@ -57,7 +40,7 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, isLoading, icon: Icon, children, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
+    const Comp = asChild ? Slot : "button"
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
@@ -65,10 +48,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={isLoading || props.disabled}
         {...props}
       >
-        {isLoading 
-          ? <Loader2 className={cn(iconVariants({ size }), children ? "mr-2" : "", "animate-spin")} />
-          : Icon && <Icon className={cn(iconVariants({ size }), children ? "mr-2" : "")} />
-        }
+        {isLoading ? (
+          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+        ) : (
+          Icon && <Icon className="mr-2 h-5 w-5" />
+        )}
         {children}
       </Comp>
     )
@@ -76,4 +60,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 Button.displayName = "Button"
 
-export { Button, buttonVariants, iconVariants }
+export { Button, buttonVariants }
